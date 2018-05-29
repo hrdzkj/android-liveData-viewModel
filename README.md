@@ -78,3 +78,7 @@ Once you have it, open `gradle.properties` file and paste your API key in `TMDB_
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+    
+    
+    测试接口地址
+    https://developers.themoviedb.org/3/movies/get-popular-movies
