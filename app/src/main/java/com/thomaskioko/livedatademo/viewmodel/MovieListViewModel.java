@@ -62,6 +62,13 @@ public class MovieListViewModel extends ViewModel {
         return moviesLiveData;
     }
 
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+        Timber.d("@onCleared called");
+    }
+
+    /*  这两个内部类，没有用到，刘毅屏蔽
     @VisibleForTesting
     static class NextPageHandler implements Observer<Resource<Boolean>> {
         @Nullable
@@ -158,12 +165,7 @@ public class MovieListViewModel extends ViewModel {
             return errorMessage;
         }
     }
+*/
 
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        Timber.d("@onCleared called");
-    }
 
 }

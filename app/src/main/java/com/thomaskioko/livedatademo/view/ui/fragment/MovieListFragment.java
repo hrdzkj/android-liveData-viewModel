@@ -75,7 +75,6 @@ public class MovieListFragment extends Fragment implements Injectable {
 
         View view = inflater.inflate(R.layout.movie_list_fragment, container, false);
         ButterKnife.bind(this, view);
-
         return view;
     }
 

@@ -82,3 +82,41 @@ Once you have it, open `gradle.properties` file and paste your API key in `TMDB_
     
     测试接口地址
     https://developers.themoviedb.org/3/movies/get-popular-movies
+
+
+ ### 新增
+生成ViewHolder的方式   mMovieListViewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieListViewModel.class);
+LiveData.observe 以被观察者订阅,可以以lambda形式定义Observer，LiveData什么数据参数就是什么数据。
+
+如何通知数据改变呢？ 可能是要调用setValue（主线程）,postValue（子线程）才会调用，是protected方法，继承实现自己的LiveData可以使用。
+网络demo:根据 mMovieListAdapter.setData(listResource.data)，observe前已经先建立好了LiveData,只负责知道有数据变化，
+目前项目，用这个可以满足要求。
+
+
+LiveData有onActive()和onInactive()方法，
+看看类关系图class_livedata，可以知道有什么方法。
+mMovieListViewModel.getPopularMovies().observe(this, this::handleResponse);
+实际上可以参考LiveData来自己实现业务上的一些观察者模式。
+
+学习：常见的错误就是把所有代码都写在Activity或者Fragment中。任何跟UI和系统交互无关的事情都不应该放在这些类当中。
+FragmentManager 都另外封装了。NavigationController
+
+-----------------
+Lifecycle：是一个保存了一个组件当前状态的类，并且其他对象可以监听状态的变化。
+定义了Event枚举类型和State枚举类型来追踪组件的状态. LifecycleObserver订阅了Lifecycle，在生命周期方法到来时
+就会收到通知。
+
+LifecycleOwner，发现它只是一个接口，里面只有一个getLifecycle方法需要实现。再是版本的Activity,fragment已经实现了该接口。
+
+LiveData.observe(@NonNull LifecycleOwner owner, @NonNull Observer<T> observer)
+getLifecycle().addObserver(@NonNull LifecycleObserver observer);
+关系：只有当 Observer 的 Lifecycle 对象处于 STARTED 或者 RESUMED 状态的时候，
+LiveData 才处于活动状态，只有在活动状态数据变化事件才会通知到 Observer。
+
+-------------
+数据变换
+LiveData 还支持简单的数据变换。目前在 Transformations 类中有 map 和 switchMap 两个变换函数，
+如果熟悉RxJava 则对这两个函数应该不陌生：
+map 是把一个数据类型变换为另外一个数据类型。
+switchMap 是把一个数据变化为另外一个 LiveData
+
