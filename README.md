@@ -35,7 +35,7 @@ If you don’t already have an account, you will need to [create one](https://ww
 in order to request an API Key.
 
 Once you have it, open `gradle.properties` file and paste your API key in `TMDB_API_KEY` variable.
-
+(已经在网上找到了一个可用的key)
 ### Libraries
 
 
