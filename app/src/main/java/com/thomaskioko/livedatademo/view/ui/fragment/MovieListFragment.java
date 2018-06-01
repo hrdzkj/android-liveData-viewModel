@@ -104,7 +104,11 @@ public class MovieListFragment extends Fragment implements Injectable {
 
         mMovieListViewModel.getSearchResults()
                 .observe(this, this::handleSearchResponse);
-
+/*
+observe()方法的第一个参数为LifecycleOwner， 表示Observer应当绑定Lifecycle， 这样意味着：
+Lifecycle未处于STARTED或RESUMED状态， 即使该值发生了变化， Observer不会被通知。
+如果Lifecycle被杀掉， Observer将被自动清除。----好巧妙
+ */
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 getActivity(), LinearLayoutManager.VERTICAL, false

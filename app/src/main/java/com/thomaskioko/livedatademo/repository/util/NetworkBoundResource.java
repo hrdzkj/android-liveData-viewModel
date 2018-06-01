@@ -29,6 +29,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
     @MainThread
     public NetworkBoundResource(AppExecutors appExecutors) {
         this.appExecutors = appExecutors;
+        Resource.loading(null);
         result.setValue(Resource.loading(null));
         //TODO:: Add method to check if data should be saved. This should apply for search data.
         LiveData<ResultType> dbSource = loadFromDb();

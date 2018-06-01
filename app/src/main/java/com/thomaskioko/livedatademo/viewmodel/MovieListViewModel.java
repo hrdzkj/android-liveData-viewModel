@@ -22,7 +22,7 @@ import javax.inject.Inject;
 
 import timber.log.Timber;
 
-
+// LiveData是抽象类
 public class MovieListViewModel extends ViewModel {
 
     private final LiveData<Resource<List<Movie>>> moviesLiveData;
