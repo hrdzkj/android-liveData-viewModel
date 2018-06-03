@@ -95,7 +95,15 @@ public class MovieListFragment extends Fragment implements Injectable {
         );
         mRecyclerView.setAdapter(mMovieListAdapter);
 
-
+        /*
+        当Activity被重构时，获得到的model实例是与重构前同一个，当MyActivity被销毁时，
+        Framework会调用ViewModel的onCleared(),我们就可以在此方法中做资源的清理。
+        因为ViewModel的生命周期是和Activity或Fragment分开的，所以在ViewModel中绝对不能引用任何View对象
+        或者任何引用了Activity的Context的对象。如果ViewModel中需要Application的Context的话，可以继承
+        AndroidViewModel;
+        ViewModelProviders.of(getActivity()).get(SharedViewModel.class)注意的是两个Fragment都使用了getActivity作为参数来获得ViewModel实例。
+        这表示这两个Fragment获得的ViewModel对象是同一个。这可以用来处理fragment间的通信。
+        */
         mMovieListViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(MovieListViewModel.class);
 
