@@ -103,6 +103,9 @@ public class MovieListFragment extends Fragment implements Injectable {
         AndroidViewModel;
         ViewModelProviders.of(getActivity()).get(SharedViewModel.class)注意的是两个Fragment都使用了getActivity作为参数来获得ViewModel实例。
         这表示这两个Fragment获得的ViewModel对象是同一个。这可以用来处理fragment间的通信。
+        viewModel的生命周期：只有当Activity的finish()方法被调用时，ViewModel.onCleared()方法会被调用，对象才会被销毁。
+        https://developer.android.google.cn/images/topic/libraries/architecture/viewmodel-lifecycle.png
+        基于此，viewModel可用用以存储持久化的用户信息，不必要存储所有列表信息，要存存最后一页即可。
         */
         mMovieListViewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(MovieListViewModel.class);
