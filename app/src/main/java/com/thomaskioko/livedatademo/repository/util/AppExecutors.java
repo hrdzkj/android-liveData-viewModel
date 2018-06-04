@@ -31,8 +31,10 @@ public class AppExecutors {
         this.mainThread = mainThread;
     }
 
+    //告诉dagger2它可以实例化这个类；
     @Inject
     public AppExecutors() {
+        //this() 调用当前的构造方法
         this(Executors.newSingleThreadExecutor(), Executors.newFixedThreadPool(3),
                 new MainThreadExecutor());
     }

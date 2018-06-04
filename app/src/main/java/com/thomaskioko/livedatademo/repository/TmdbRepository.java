@@ -40,6 +40,7 @@ public class TmdbRepository {
     private VideoDao mVideoDao;
     private final AppExecutors mAppExecutors;
 
+    // 告诉dagger2它可以实例化这个类；
     @Inject
     TmdbRepository(AppExecutors appExecutors, TmdbService tmdbService, TmdbDb tmdbDb, MovieDao movieDao,
                    GenreDao genreDao, VideoDao videoDao) {

@@ -45,7 +45,7 @@ import butterknife.ButterKnife;
 
 public class MovieListFragment extends Fragment implements Injectable {
 
-    @Inject
+    @Inject  // 注解了@Inject的变量表示该变量要求Dagger为其注入值
     public ViewModelProvider.Factory viewModelFactory;
     @Inject
     public NavigationController navigationController;
@@ -245,6 +245,7 @@ Lifecycle未处于STARTED或RESUMED状态， 即使该值发生了变化， Obse
                     progressBar.setVisibility(View.GONE);
                     errorTextView.setVisibility(View.GONE);
                     if (listResource.data != null && listResource.data.size() > 0) {
+                        //一页数据是这样处理，多页数据也是同理，这样处理呀
                         searchAdapter.setItems(listResource.data);
                         searchAdapter.notifyDataSetChanged();
                     } else {

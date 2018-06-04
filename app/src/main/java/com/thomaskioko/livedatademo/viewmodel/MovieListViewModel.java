@@ -30,6 +30,7 @@ public class MovieListViewModel extends ViewModel {
     private final LiveData<Resource<List<Movie>>> searchResults;
 
 
+    // 采用了Dagger2依赖注入。告诉dagger2它可以实例化这个类；
     @Inject
     MovieListViewModel(@NonNull TmdbRepository tmdbRepository) {
         moviesLiveData = tmdbRepository.getPopularMovies();

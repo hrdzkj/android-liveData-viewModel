@@ -13,7 +13,7 @@ import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 
-
+// 编写Component接口使用@Component进行标注，里面的void inject()的参数表示要将依赖注入到的目标位置
 @Singleton
 @Component(modules = {
         AndroidInjectionModule.class,
