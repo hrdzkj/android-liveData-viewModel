@@ -120,3 +120,8 @@ LiveData 还支持简单的数据变换。目前在 Transformations 类中有 ma
 map 是把一个数据类型变换为另外一个数据类型。
 switchMap 是把一个数据变化为另外一个 LiveData
 
+// 期间引出了好多框架
+不知道是否稳定了的：android paging library
+稳定的：mock，drag2
+其他的：https://github.com/googlesamples/android-architecture-components
+
